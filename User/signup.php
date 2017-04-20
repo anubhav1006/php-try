@@ -11,8 +11,13 @@ input{
 
 <script>
 
-function alerting(var text){
-	alert(text);
+function alerting(){
+	alert("Passwords do not match");
+
+	return false;
+}
+function complete(){
+	alert("Submitted successfully. Now you can Login.");
 }
 
 </script>
@@ -45,7 +50,7 @@ Registration Number: <input type="text" name="reg" required>
 
 <?php
 
-include('connection.php');
+include('config.php');
 
 ?>
 <?php
@@ -58,23 +63,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$email=$_POST['email'];
 	$contact=$_POST['contact'];
 	$reg=$_POST['reg'];
-echo $username;
 
 
-	/*if($password!=$cpassword){
+	if($password!=$cpassword){
 
-		echo'<script>alerting("Password do not match!!")</script>';
+		echo'<script>alerting()</script>';
 		return false;
 	}
 	
 	$sql="INSERT INTO login(username,password,email,contact,reg) VALUES ('$username','$password','$email','$contact','$reg')";
 	$result=mysqli_query($con, $sql);
 	if($result){
-		echo "Submitted successfully";
+		echo'<script>complete()</script>';
+		header('location:signin.php');
 	}
 	else{
 		echo "Error: ".mysqli_error($con);	
-	}*/
+	}
 }
 
 ?>
