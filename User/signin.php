@@ -1,5 +1,4 @@
 
-
 <html>
 <head>
 <style>
@@ -34,7 +33,8 @@ Password: <input type="password" name="password" required>
 <br><br>
 <input type="submit" name="submit">
 </form>
-
+<a href="forgotpass.php"><button type="button" name="button">Forgot your password</button></a>
+<a href="signup.php"><button type="button" name="button">Signup to our site.</button></a>
 </center>
 
 <?php
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	$username=$_POST['username'];
 	$password=$_POST['password'];
-	
+
 	$sql="SELECT * FROM login where username=$username and password = $password";
 	$result=mysqli_query($con, $sql);
 
@@ -60,13 +60,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	}
 	else{
 
-		
+
 // Start the session
 	session_start();
 	$_SESSION["username"] = $username;
-	
+
 
 		header('location:index.php');
 	}
 }
 ?>
+</body>
+</html>
